@@ -12,6 +12,7 @@ let
     jujutsu
     pre-commit
     poetry
+    python312
   ];
 in
 
