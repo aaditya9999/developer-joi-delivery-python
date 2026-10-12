@@ -12,3 +12,10 @@ class ProductService:
             if product.product_id == product_id and product.store and product.store.outlet_id == outlet_id:
                 return product
         return None
+
+    def get_products_for_store(self,store_id:str)->List[GroceryProduct]:
+        return [
+            product 
+            for product in self.products
+            if product.store and product.store.outlet_id==store_id
+        ]

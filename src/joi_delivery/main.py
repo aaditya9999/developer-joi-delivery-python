@@ -11,8 +11,7 @@ from joi_delivery.router import router
 from joi_delivery.service.cart_service import CartService
 from joi_delivery.service.product_service import ProductService
 from joi_delivery.service.user_service import UserService
-
-
+from joi_delivery.service.inventory_service import InventoryService
 def create_app() -> FastAPI:
     app = FastAPI(
         title="JOI Delivery",
@@ -27,6 +26,7 @@ def create_app() -> FastAPI:
 
     app.state.user_service = UserService(users=seed_data["users"])
     app.state.product_service = ProductService(products=seed_data["grocery_products"])
+    app.state.inventory_service=InventoryService(product_service=app.state.product_service)
     app.state.cart_service = CartService(
         user_service=app.state.user_service,
         product_service=app.state.product_service,
